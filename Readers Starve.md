@@ -53,3 +53,13 @@ do{
   signal(rmutex);
 }while(true);
 ```
+Reader Process:
+* Check with **readTry** if reading is allowed. If there is any writer process readTry is already locked and read process is halted here only. If not released this may lead to **Reader Starvation**.
+* Reader process proceed by locking readTry if not already occupied by a writer process. Lock **rmutex** to update read_count. If it is first reader then lock **rw_mutex** so that writer process can not access the resource now. Subsequently rmutex and readTry are released.
+* Reading is done.
+* Lock **rmutex**. Update read_count. If no reading process left then release rw_mutex. Release rmutex at the end.
+
+Writer Process:
+*
+
+
