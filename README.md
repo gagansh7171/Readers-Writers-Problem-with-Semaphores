@@ -1,1 +1,1 @@
-# Reader Writer Problem with  Semaphores
+# Reader-Writer Problem with  Semaphores
