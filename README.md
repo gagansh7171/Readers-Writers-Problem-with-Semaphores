@@ -1,1 +1,1 @@
-# Reader-Writer-Problem-with-Sephamore
+# Reader Writer Problem with  Semaphores
