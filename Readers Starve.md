@@ -60,6 +60,9 @@ Reader Process:
 * Lock **rmutex**. Update read_count. If no reading process left then release rw_mutex. Release rmutex at the end.
 
 Writer Process:
-*
-
+* Lock **wmutex** to update write_count value. If there is any writing process then **readTry** is locked preventing reader processes to read. Then wmutex is released.
+* Lock **rwmutex** to prevent any other writer process to write while one writer is writing. 
+* Do the writing process.
+* Release **rwmutex**.
+* Lock **wmutex** to update write_count. If no writer process is left then release **readTry** to allow reader process to read. Release **wmutex** at the end.
 
