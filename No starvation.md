@@ -103,5 +103,5 @@ do{
 }while(true);
 ```
 
-**Writer process** : Lock **in** to prevent any new reader from entering. If number of entered reading process equal to exited reading process then just continue with writing process. Else mark **wait** equal to true to let readers know that writer processes are waiting. Lock **rw_mutex** when readers allow it to prevent other readers and writers from accessing the resource. When rw_mutex is acquired wait is marked false and writing is done. Release **in** in the end.
-**Reader process** : 
+**Writer process** : Lock **in** to prevent any new reader from entering. If number of entered reading process equal to exited reading process then just continue with writing process. Else mark **wait** equal to true to let readers know that writer processes are waiting. Lock **rw_mutex** when readers allow it to prevent other readers and writers from accessing the resource. When rw_mutex is acquired wait is marked false and writing is done. Release **in** in the end.<br>
+**Reader process** : Lock **in** to update in_count. If writer has not locked it already then it is now occupied by the reader. On updating release **in** for other processes. Reading is done. Lock **out** to update out_count. If some writer is waiting and all entered readers have exited then **rw_mutex** is released to allow writers access to the resource.
